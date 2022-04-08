@@ -10,4 +10,7 @@ export default defineConfig({
     "process.platform": JSON.stringify(process.platform),
   },
   plugins: [react()],
+  build: {
+    outDir: "../static/admin",
+  },
 });
