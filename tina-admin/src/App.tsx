@@ -13,7 +13,7 @@ function App() {
           // populate a .env file with VITE_CLIENT_URL=***
           clientId={process.env.VITE_CLIENT_URL}
           // in production this would be changed to isLocalClient={false}
-          isLocalClient={true}
+          isLocalClient={process.env.NODE_ENV == "development"}
           cmsCallback={(cms) => {
             cms.flags.set("tina-admin", true);
             return cms;
