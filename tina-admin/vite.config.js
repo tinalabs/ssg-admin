@@ -7,7 +7,7 @@ export default defineConfig({
     "process.env": {
       VITE_CLIENT_URL: process.env.VITE_CLIENT_URL,
     },
-    "process.platform": "win32",
+    "process.platform": JSON.stringify(process.platform),
   },
   plugins: [react()],
 });
