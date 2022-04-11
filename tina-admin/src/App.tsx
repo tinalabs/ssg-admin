@@ -4,23 +4,18 @@ import { TinaEditProvider, setEditing } from "tinacms/dist/edit-state";
 function App() {
   setEditing(true);
 
+  const branch = "main";
+  const clientId = "";
+  const apiURL =
+    process.env.NODE_ENV == "development"
+      ? "http://localhost:4001/graphql"
+      : `https://content.tinajs.io/content/${clientId}/github/${branch}`;
+
   return (
     <TinaEditProvider
       editMode={
-        <TinaCMS
-          data={{}}
-          branch="main"
-          // populate a .env file with VITE_CLIENT_URL=***
-          clientId={process.env.VITE_CLIENT_URL}
-          // in production this would be changed to isLocalClient={false}
-          isLocalClient={process.env.NODE_ENV == "development"}
-          cmsCallback={(cms) => {
-            cms.flags.set("tina-admin", true);
-            return cms;
-          }}
-        >
-          {/* @ts-ignore */}
-          {(_livePageProps) => <TinaAdmin />}
+        <TinaCMS apiURL={apiURL}>
+          <TinaAdmin />
         </TinaCMS>
       }
     >
